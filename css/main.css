@@ -1,0 +1,60 @@
+.success
+{
+  color:green;
+}
+
+.error
+{
+  color:red;
+}
+
+#account_table td
+{
+    padding: 3px;
+}
+
+#account_table .info_col
+{
+    color:gray;
+}
+
+#account_table .button_col
+{
+    color:gray;
+    text-align: right;
+}
+
+#transactions_table 
+{
+    border-color:gray;
+    border-collapse: collapse; 
+}
+
+
+#transactions_table td
+{
+    padding: 3px;
+}
+
+#transactions_table th
+{
+    padding: 3px;
+    color:gray;
+    font-weight: bold;
+    text-align: center;
+}
+
+#transactions_table .sum_col
+{
+  text-align:right; 
+  font-weight:bolder;
+}
+
+.minus_sum
+{
+ color:maroon;   
+}
+
+
+
+
