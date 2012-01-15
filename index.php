@@ -1,8 +1,8 @@
 <?php
-  include_once ("include/config.php");  //íàñòðîéêè
+  include_once ("include/config.php");  //Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸
   include_once ("lang/ru.inc");
   
-  include_once ("include/smarty_init.php");//Èíèöèàëèçàöèÿ smarty
+  include_once ("include/smarty_init.php");//Ð˜Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ smarty
   
   include_once("include/bitcoin/bitcoin.inc");
   include_once ("modules/pay_func.php");
