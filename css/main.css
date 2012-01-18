@@ -55,6 +55,10 @@
  color:maroon;   
 }
 
+#accounts_table td
 
+{
+    padding: 3px;
+}
 
 

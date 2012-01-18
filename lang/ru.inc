@@ -5,4 +5,10 @@
    define(LANG_BALANCE_ERROR_CHECKOUT,'Ошибка перевода баланса.');
    define(LANG_BALANCE_NOTHING_CHECKOUT,'Нечего выводить, BTC баланс = 0.');
    define(LANG_CANT_GET_BALANCE,'Не удалось получить баланс, попробуйте обновить баланс позже.');
+
+//Тестовые
+   define(LANG_TEST_COINS_OK,'Тестовые монеты зачислены');
+   define(LANG_TEST_NOCOINS,'Тестовые монеты закончились');
+   define(CANT_USE_MAIN_ACC,'Этот аккаунт использовать нельзя');
+
 ?>

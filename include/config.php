@@ -13,7 +13,7 @@
     define('RPC_Port','8332');
     
     //Основной , консолидированный, аккаунт на который будут переводиться BTC с клиентских счетов
-    DEFINE(MAIN_ACC,'BaseAcc');
+    DEFINE(MAIN_ACC,'WalletBank');
     
     //Обменый курс
     DEFINE(EX_RATE,7);

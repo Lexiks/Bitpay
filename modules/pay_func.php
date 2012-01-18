@@ -12,6 +12,13 @@
       }
       
       //Функция проверки и получения адреса в случае его отсутсвия
+      function  validate_address($address) {
+          $isvalid = $this->validateaddress($address);
+          if ((bool)$isvalid['isvalid']) { 
+              return  $address;
+          }
+              
+      }
       function GetUserBTCAddress()
            {
                global $BitPay;
@@ -19,6 +26,8 @@
                     if ($this->CanConnect) {
                        //Еслть ли уже такой адрес?
                         $address_array = $this->getaddressesbyaccount($this->user_name);
+                        
+
                     }
                } catch (BitcoinClientException $e) {
                    // Ошибочка, ставим флаг недоступности сервера на
@@ -27,7 +36,7 @@
                if ((isset($address_array)) && (count($address_array) > 0))
                //Если у $user_name уже есть адрес, тогда возвращаем его
                {
-                   return $address_array[0];
+                   return $this->validate_address($address_array[0]);
                }
                else 
                //иначе генерим новый
@@ -42,17 +51,20 @@
                           $this->SetServerErrorFlag();
                     }
                    //Если успешно, возвращает адрес
-                   if ((isset($address)) && (count($address) > 0)) return $address;
+                   if ((isset($address)) && (count($address) > 0)) return $this->validate_address($address);
                }
            }
            
        //Получение баланса в BTC
-       function GetUserBTCBalance()
+       function GetUserBTCBalance($user_name = NULL)
        {
+           if (!isset($user_name)) {
+               $user_name = $this->user_name;
+           }
            try {
                     if ($this->CanConnect) {
                        //Получить  баланс, MIN_BLOCK_COUNT - число подтвержденных блоков , после которых показывать баланс, задается в config.php
-                        $balance = $this->getbalance($this->user_name,MIN_BLOCK_COUNT);
+                        $balance = $this->getbalance($user_name,MIN_BLOCK_COUNT);
                     }
                } catch (BitcoinClientException $e) {
                      $this->SetServerErrorFlag();
@@ -66,7 +78,7 @@
            try {
                     if ($this->CanConnect) {
                        //Получить  баланс, MIN_BLOCK_COUNT - число подтвержденных блоков , после которых показывать баланс, задается в config.php
-                        $transactions = $this->listtransactions($this->user_name,10);
+                        $transactions = $this->listtransactions($this->user_name,100);
                     }
                } catch (BitcoinClientException $e) {
                      $this->SetServerErrorFlag();
@@ -110,7 +122,7 @@
                   try {
                        if ($this->CanConnect) {
                           //Внутренний перевод BTC с аккаунта клиента, на консолидированный аккаунт нашего сервиса
-                           $move_result = $this->move($this->user_name,MAIN_ACC,$balance,1,'Balance checkout');
+                           $move_result = $this->move($this->user_name,MAIN_ACC,$balance,1,'Balance checkout at '.EX_RATE.' USD/BTC');
                        }
                   } catch (BitcoinClientException $e) {
                         $this->SetServerErrorFlag();
