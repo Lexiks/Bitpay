@@ -12,6 +12,8 @@
       exit;
   }
   
+  
+  // Показывает остатки по всем счетам.
   function ShowAllAccounts()
   {
       global $BitPay,$smarty,$db;

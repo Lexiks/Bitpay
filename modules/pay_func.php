@@ -122,7 +122,7 @@
                   try {
                        if ($this->CanConnect) {
                           //Внутренний перевод BTC с аккаунта клиента, на консолидированный аккаунт нашего сервиса
-                           $move_result = $this->move($this->user_name,MAIN_ACC,$balance,1,'Balance checkout at '.EX_RATE.' USD/BTC');
+                           $move_result = $this->move($this->user_name,MAIN_ACC,$balance,MIN_BLOCK_COUNT,'Balance checkout at '.EX_RATE.' USD/BTC');
                        }
                   } catch (BitcoinClientException $e) {
                         $this->SetServerErrorFlag();

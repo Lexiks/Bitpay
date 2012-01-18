@@ -58,19 +58,22 @@ function get_address()
 </script>
 {/literal}
 <body>
-Ваш аккаунт : <b id='account'>{$user_name}</b> <a href="index.php?user_name=" > [Изменить имя]</a> <br>
+
+
+
+{$smarty.const.SM_YOUR_ACCOUNT}  : <b id='account'>{$user_name}</b> <a href="index.php?user_name=" > [{$smarty.const.SM_CHANGE_NAME}]</a> <br>
 <table cellpadding="0" cellspacing="0" border="0" id="account_table">
-<tr><td class="info_col">Ваш BitCoin адрес для оплаты:</td> <td width="200px" colspan="2"><b id='pay_address'>{$pay_address}</b></td></tr>
+<tr><td class="info_col">{$smarty.const.SM_YOUR_BITPAY_ADDRES}:</td> <td width="200px" colspan="2"><b id='pay_address'>{$pay_address}</b></td></tr>
 <tr><td colspan="3">&nbsp;</td></tr>
-<tr><td class="info_col">Ваш текущий BTC баланс:</td> <td><b id='current_btc_balance'>{$current_btc_balance} </b> BTC<td class="button_col"> <a href="/jse.html" onclick="refresh_btc_balance();return false">Обновить BTC баланс</a></td> </tr>
-<tr><td class="info_col">Ваш текущий USD баланс:</td> <td><b id='current_usd_balance'>{$current_usd_balance}</b> $<td class="button_col"> <a href="/jse.html" onclick="refresh_usd_balance();return false">Обновить USD баланс</a></td> </tr>
+<tr><td class="info_col">{$smarty.const.SM_YOUR_CURRENT_BTC_BALANCE} :</td> <td><b id='current_btc_balance'>{$current_btc_balance} </b> BTC<td class="button_col"> <a href="/jse.html" onclick="refresh_btc_balance();return false">{$smarty.const.SM_REFRESH_BTC_BALANCE}</a></td> </tr>
+<tr><td class="info_col">{$smarty.const.SM_YOUR_CURRENT_USD_BALANCE} :</td> <td><b id='current_usd_balance'>{$current_usd_balance}</b> $<td class="button_col"> <a href="/jse.html" onclick="refresh_usd_balance();return false">{$smarty.const.SM_REFRESH_USD_BALANCE}</a></td> </tr>
 <tr><td colspan="2"><span id="checkout">&nbsp;</span></td><td class="button_col"><a href="/jse.html" onclick="DoCheckout();return false">Перевести BTC в USD</a></td>  <br></tr>
 </table>
 <br>
-<a href="/jse.html"  onclick="GetTestCoins();return false">Зачислить немного тестовых монет</a><br>
-<a href="index.php?action=get_accounts" target="_blank">Просмотреть остатки по всем аккаунтам на кошельке</a><br>
+<a href="/jse.html"  onclick="GetTestCoins();return false">{$smarty.const.SM_GIVE_ME_TEST_COINS}</a><br>
+<a href="index.php?action=get_accounts" target="_blank">{$smarty.const.SM_SHOW_ALL_ACCOUNTS}</a><br>
 <br>
-Список транзакций: <a  href="/jse.html" onclick="refresh_transactions();return false">Обновить транзакции</a>
+{$smarty.const.SM_TRANSACTIONS_LIST} <a  href="/jse.html" onclick="refresh_transactions();return false">{$smarty.const.SM_REFRESH_TRANSACTIONS}</a>
 <div id="transaction_list">&nbsp;</div>
 
 {include file='footer.tpl'}
