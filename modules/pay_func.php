@@ -56,15 +56,19 @@
            }
            
        //Получение баланса в BTC
-       function GetUserBTCBalance($user_name = NULL)
+       function GetUserBTCBalance($user_name = NULL, $min_confirmations_count = NULL)
        {
+           if (!isset($min_confirmations_count)) {
+               $min_confirmations_count = MIN_CONFIRMATIONS_COUNT;
+           }
+           
            if (!isset($user_name)) {
                $user_name = $this->user_name;
            }
            try {
                     if ($this->CanConnect) {
-                       //Получить  баланс, MIN_BLOCK_COUNT - число подтвержденных блоков , после которых показывать баланс, задается в config.php
-                        $balance = $this->getbalance($user_name,MIN_BLOCK_COUNT);
+                       //Получить  баланс, MIN_CONFIRMATIONS_COUNT - число подтвержденных блоков , после которых показывать баланс, задается в config.php
+                        $balance = $this->getbalance($user_name,$min_confirmations_count);
                     }
                } catch (BitcoinClientException $e) {
                      $this->SetServerErrorFlag();
@@ -77,7 +81,7 @@
        {
            try {
                     if ($this->CanConnect) {
-                       //Получить  баланс, MIN_BLOCK_COUNT - число подтвержденных блоков , после которых показывать баланс, задается в config.php
+                       //Получить  баланс, MIN_CONFIRMATIONS_COUNT - число подтвержденных блоков , после которых показывать баланс, задается в config.php
                         $transactions = $this->listtransactions($this->user_name,100);
                     }
                } catch (BitcoinClientException $e) {
@@ -122,7 +126,7 @@
                   try {
                        if ($this->CanConnect) {
                           //Внутренний перевод BTC с аккаунта клиента, на консолидированный аккаунт нашего сервиса
-                           $move_result = $this->move($this->user_name,MAIN_ACC,$balance,MIN_BLOCK_COUNT,'Balance checkout at '.EX_RATE.' USD/BTC');
+                           $move_result = $this->move($this->user_name,MAIN_ACC,$balance,MIN_CONFIRMATIONS_COUNT,'Balance checkout at '.EX_RATE.' USD/BTC');
                        }
                   } catch (BitcoinClientException $e) {
                         $this->SetServerErrorFlag();
@@ -143,14 +147,14 @@
                         //Проверки успешности
                         if ($add_balance_result) 
                         {
-                             $res = '<span class="success">'.LANG_BALANCE_SUCCESS_CHECKOUT.'</span>';
+                             $res = '<div class="alert-message block-message success">'.LANG_BALANCE_SUCCESS_CHECKOUT.'<a class="close" onclick="$(this).parent().fadeOut()">×</a></div>';
                         }     
                       
                     }  else {
-                        $res = '<span class="error">'.LANG_BALANCE_ERROR_CHECKOUT.'</span>';
+                        $res = '<div class="alert-message block-message error">'.LANG_BALANCE_ERROR_CHECKOUT.'<a class="close" onclick="$(this).parent().fadeOut()">×</a></div>';
                     }
                }  else {
-                        $res = '<span class="error">'.LANG_BALANCE_NOTHING_CHECKOUT.'</span>';
+                        $res = '<div class="alert-message block-message warning">'.LANG_BALANCE_NOTHING_CHECKOUT.'<a class="close" onclick="$(this).parent().fadeOut()">×</a></div>';
                     }
            return $res;
        }       

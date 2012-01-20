@@ -9,10 +9,9 @@
   include_once("include/bitcoin/bitcoin.inc");
   include_once ("modules/pay_func.php");
   include_once ("modules/actions.php");
-  
+  include_once ("include/json.php");  
   
   include_once ("include/connect.php");
-
   $action = $_GET["action"];
   $user_name = preg_replace ("/[^a-zA-Z0-9]/","",$_SESSION["user_name"]);
   
@@ -35,11 +34,19 @@
   
   
   $BitPay = new BitPay($user_name);
+
   
   switch ($action) {
   
         case 'get_btc_balance' : { 
-                              $btc_balance_code = GetBTCBalanceCode();
+                              $balance_code_confirmed = GetBTCBalanceCode(1);
+                              if (is_numeric($balance_code_confirmed)){
+                                  $balance_code_unconfirmed = GetBTCBalanceCode(0);
+                                  $balance_code_unconfirmed = $balance_code_unconfirmed-$balance_code_confirmed;
+                                  $balance_code = array('confirmed' => $balance_code_confirmed, 'unconfirmed' => $balance_code_unconfirmed);
+                                  $btc_balance_code = json_encode($balance_code);
+                              }
+                                 
                               echo $btc_balance_code;
                              } break;
         case 'checkout' : { 
@@ -64,6 +71,10 @@
                              
         case 'get_transactions' : ShowTransactions();
         case 'get_accounts' : ShowAllAccounts();
+        
+        case 'about' : $smarty->display('about.tpl'); break; 
+        case 'contact' : $smarty->display('contact.tpl');  break;
+        
         default : ShowDefaultPage();break;
   }
   
