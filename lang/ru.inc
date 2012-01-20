@@ -31,6 +31,8 @@
  define(SM_DO_CHECKOUT,'Перевести BTC в USD');
  define(SM_DO_CHECKOUT_TITLE,'Обнуляет BTC баланс и конвертирует его в USD баланс по текущему, указанному в настройках, курсу');
  define(SM_SM_GIVE_ME_TEST_COINS_TITLE,'Используется только для демонстрации, переводит немного BTC с основного консолидированного аккаунта на текущий');
+ define(SM_CURRENT_EX_RATE,'Текущий обменный курс');
+ 
  
  
  define(SM_CONFIRMED,'Подтверждено');

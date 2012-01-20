@@ -3,19 +3,22 @@
   error_reporting(4);
   include_once ("include/config.php");  //настройки
   include_once ("include/lang.php");
+  include_once ("include/class.curl.php");  
   
   include_once ("include/smarty_init.php");//Инициализация smarty
   
   include_once("include/bitcoin/bitcoin.inc");
   include_once ("modules/pay_func.php");
   include_once ("modules/actions.php");
-  include_once ("include/json.php");  
+  
+  if (!function_exists('json_encode')) 
+      include_once ("include/json.php");
   
   include_once ("include/connect.php");
+  
   $action = $_GET["action"];
   $user_name = preg_replace ("/[^a-zA-Z0-9]/","",$_SESSION["user_name"]);
-  
-
+   
   if (isset($_GET['user_name'])) {
       if ((strtolower($_GET['user_name'])) === (strtolower(MAIN_ACC))) {
           echo CANT_USE_MAIN_ACC;
@@ -42,7 +45,8 @@
                               if (is_numeric($balance_code_confirmed)){
                                   $balance_code_unconfirmed = GetBTCBalanceCode(0);
                                   $balance_code_unconfirmed = $balance_code_unconfirmed-$balance_code_confirmed;
-                                  $balance_code = array('confirmed' => $balance_code_confirmed, 'unconfirmed' => $balance_code_unconfirmed);
+                                  $mtgox_ticker = GetMtGoxTicker();
+                                  $balance_code = array('confirmed' => $balance_code_confirmed, 'unconfirmed' => $balance_code_unconfirmed, 'mtgox_ticker' => $mtgox_ticker);
                                   $btc_balance_code = json_encode($balance_code);
                               }
                                  

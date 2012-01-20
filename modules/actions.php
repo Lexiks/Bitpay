@@ -4,10 +4,12 @@
   function ShowTransactions()
   {
       global $BitPay,$smarty;
+      
       $transactions = $BitPay->GetUserTransactions();
       
       //заполняем переменные шаблонизатора и выводим страницу
       $smarty->assign('transactions',$transactions);
+      $smarty->caching = false;
       $smarty->display('transactions.tpl');
       exit;
   }
@@ -47,6 +49,7 @@
           $smarty->assign('accounts',$accounts);
           $smarty->assign('balance',$balance);
           $smarty->assign('info',$info);
+      $smarty->caching = false;
       $smarty->display('accounts.tpl');
       }
       else echo "No accounts";
@@ -66,13 +69,18 @@
       $balance_code_confirmed = GetBTCBalanceCode(1);
       $balance_code_unconfirmed = GetBTCBalanceCode(0);
       $usd_balance = $BitPay->GetUSDBalance();
+      $mtgox_ticker = GetMtGoxTicker();
+        
       //заполняем переменные шаблонизатора и выводим страницу
-      $smarty->assign('page_name','main');
+      
+      $smarty->assign('mtgox_ticker',$mtgox_ticker);
       $smarty->assign('user_name',$BitPay->user_name);
       $smarty->assign('pay_address',$user_address_code);
       $smarty->assign('current_btc_balance_confirmed',$balance_code_confirmed);
       $smarty->assign('current_btc_balance_unconfirmed',$balance_code_unconfirmed-$balance_code_confirmed);
       $smarty->assign('current_usd_balance',$usd_balance);
+      
+      $smarty->caching = false;
       $smarty->display('index.tpl');
       exit;
   }
@@ -80,6 +88,7 @@
   function ShowUsernamePrompt()
   {
       global $smarty;
+      $smarty->caching = false;
       $smarty->display('get_username.tpl');
       exit;
   }
@@ -131,6 +140,43 @@
   {
       SetCookie("lang",$lang,time()+60*60*24*30*12);
       header("Location: index.php");
+  }
+  
+  
+  function GetMtGoxTicker()
+  {
+      global $smarty;
+      $smarty->caching = true;
+      $smarty->cache_lifetime = 60;
+      $cache_tag = 'mtgox_ticker';
+      //$smarty->clear_all_cache();
+      $is_cached = $smarty->isCached('mtgox_ticker.tpl',$cache_tag);
+      
+      
+      if (!$is_cached) {
+          $c = new curl('https://mtgox.com/api/0/data/ticker.php') ;
+          $c->setopt(CURLOPT_TIMEOUT, 10) ;
+          $c->setopt(CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MtGox PHP client; '.php_uname('s').'; PHP/'.phpversion().')');
+          $c->setopt(CURLOPT_SSL_VERIFYPEER, FALSE) ;
+          $c->setopt(CURLOPT_SSL_VERIFYHOST, FALSE) ;      
+          $c->setopt(CURLOPT_RETURNTRANSFER, TRUE) ;      
+
+          $json_data =  $c->exec() ;
+             if ($theError = $c->hasError())
+            { 
+              $result = null;
+              $smarty->display('mtgox_ticker.tpl',$cache_tag);
+            }
+            else
+            {
+                $result = json_encode($json_data);
+                $smarty->assign('json_data',$json_data);
+            }
+
+            $c->close() ;
+      }
+      return json_decode($smarty->fetch('mtgox_ticker.tpl',$cache_tag),true);
+        
   }
   
   ?>

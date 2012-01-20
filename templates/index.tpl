@@ -33,7 +33,7 @@
            <td class="info_col">
               {$smarty.const.SM_YOUR_CURRENT_BTC_BALANCE} :
            </td> 
-           <td width="250px">
+           <td width="280px">
              <div style="height:20px;">
                <div style="float:left;">{$smarty.const.SM_CONFIRMED}:</div>
                <div style="float:right;margin-left:10px;">BTC</div>
@@ -52,7 +52,7 @@
         </tr>
         <tr>
            <td class="info_col">{$smarty.const.SM_YOUR_CURRENT_USD_BALANCE} :</td> 
-           <td width="250px">
+           <td width="280px">
              <div style="height:20px;">
                <div style="float:left;"></div>
                <div style="float:right;margin-left:10px;">USD</div>
@@ -61,7 +61,14 @@
            <td class="button_col"> <a href="js_error.html" onclick="refresh_usd_balance();return false" class="btn">{$smarty.const.SM_REFRESH_USD_BALANCE}</a></td> 
         </tr>
         <tr>
-           <td colspan="2"><span id="checkout">&nbsp;</span></td><td class="button_col"><a href="js_error.html" onclick="DoCheckout();return false" class="btn success" title="{$smarty.const.SM_DO_CHECKOUT_TITLE}">{$smarty.const.SM_DO_CHECKOUT}</a></td>
+           <td class="info_col">{$smarty.const.SM_CURRENT_EX_RATE}: </td>
+           <td><div style="height:20px;">
+               <div style="float:left;"></div>
+               <div style="float:right;margin-left:10px;">USD/BTC</div>
+               <div style="float:right;"><b id='ticker_last'>{$mtgox_ticker.ticker.last}</b></div>
+             </div>
+           </td>
+           <td class="button_col"><a href="js_error.html" onclick="DoCheckout();return false" class="btn success" title="{$smarty.const.SM_DO_CHECKOUT_TITLE}">{$smarty.const.SM_DO_CHECKOUT}</a></td>
         </tr>
     </table>
     <div id="statusbox" style="height:20px">&nbsp;</div>

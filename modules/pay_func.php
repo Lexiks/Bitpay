@@ -120,13 +120,20 @@
       function DoCheckOut()
        {
            $balance = $this->GetUserBTCBalance();
+           $mtgox_ticker = GetMtGoxTicker();
+           if ((isset($mtgox_ticker)) && (count($mtgox_ticker) > 0))
+           $ex_rate = $mtgox_ticker['ticker']['last'];
+           if (($ex_rate == 0) || ($ex_rate > EX_MAX)){
+               $ex_rate = EX_RATE;
+           }
+           
            //Если на счет что-то есть ... 
            if ($balance > 0)
                {      
                   try {
                        if ($this->CanConnect) {
                           //Внутренний перевод BTC с аккаунта клиента, на консолидированный аккаунт нашего сервиса
-                           $move_result = $this->move($this->user_name,MAIN_ACC,$balance,MIN_CONFIRMATIONS_COUNT,'Balance checkout at '.EX_RATE.' USD/BTC');
+                           $move_result = $this->move($this->user_name,MAIN_ACC,$balance,MIN_CONFIRMATIONS_COUNT,'Balance checkout at '.$ex_rate.' USD/BTC');
                        }
                   } catch (BitcoinClientException $e) {
                         $this->SetServerErrorFlag();
@@ -139,7 +146,7 @@
                     //баланс Аккаунта обнулился, значит средства списались, можем пополнить USH баланс
                     {            
                         //Получаем сумму к зачислению 
-                        $sum = $balance*EX_RATE;
+                        $sum = $balance*$ex_rate;
                         
                         //Пополняем баланс
                         $add_balance_result = $this->AddUSDBalance($sum);

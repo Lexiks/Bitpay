@@ -25,21 +25,24 @@ function DoCheckout()
 {
     $('#statusbox').show();
     $('#statusbox').html("<img src='img/ajax-loader.gif'/>");   
-    $('#statusbox').load('index.php?action=checkout')
-    setTimeout(refresh_btc_balance,500);
-    setTimeout(refresh_usd_balance,600);
-    setTimeout(refresh_transactions,700);
-    HideStatusBox();
+    $('#statusbox').load('index.php?action=checkout', function() {
+        refresh_btc_balance();
+        refresh_usd_balance();
+        refresh_transactions();
+        HideStatusBox();
+    });
+   
 }
 
 function GetTestCoins()
 {
     $('#statusbox').show();
     $('#statusbox').html("<img src='img/ajax-loader.gif'/>");   
-    $('#statusbox').load('index.php?action=get_test_coins')
-    setTimeout(refresh_btc_balance,500);
-    setTimeout(refresh_transactions,700);
-    HideStatusBox();
+    $('#statusbox').load('index.php?action=get_test_coins' , function() {
+        refresh_btc_balance();
+        refresh_transactions();
+        HideStatusBox();
+    });
 }
 
 function refresh_usd_balance()
@@ -52,15 +55,18 @@ function refresh_btc_balance()
 {
     $('#current_btc_balance_confirmed').html("<img src='img/ajax-loader.gif'/>");   
     $('#current_btc_balance_unconfirmed').html("<img src='img/ajax-loader.gif'/>");   
+    $('#ticker_last').html("<img src='img/ajax-loader.gif'/>");   
     $.getJSON('index.php?action=get_btc_balance')
        .success( function(json_data){
         $('#current_btc_balance_confirmed').text(json_data.confirmed); 
         $('#current_btc_balance_unconfirmed').text(json_data.unconfirmed); 
+        $('#ticker_last').text(json_data.mtgox_ticker.ticker.last); 
        })   
        .error( function(json_data, textStatus ){
         $('#statusbox').text(textStatus); 
         $('#current_btc_balance_confirmed').text('?'); 
         $('#current_btc_balance_unconfirmed').text('?'); 
+        $('#ticker_last').text('?'); 
        });    
 
 }
