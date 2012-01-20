@@ -1,13 +1,13 @@
 <?php
   session_start();
   error_reporting(4);
-  include_once ("include/config.php");  //настройки
+  include_once ("include/config.php");  //настройки (settings)
   include_once ("include/lang.php");
   include_once ("include/class.curl.php");  
   
   include_once ("include/smarty_init.php");//Инициализация smarty
   
-  include_once("include/bitcoin/bitcoin.inc");
+  include_once("include/bitcoin/bitcoin.inc"); //RPC functions
   include_once ("modules/pay_func.php");
   include_once ("modules/actions.php");
   
@@ -19,6 +19,7 @@
   $action = $_GET["action"];
   $user_name = preg_replace ("/[^a-zA-Z0-9]/","",$_SESSION["user_name"]);
    
+  //You can't use main consolidated account as a regulat account
   if (isset($_GET['user_name'])) {
       if ((strtolower($_GET['user_name'])) === (strtolower(MAIN_ACC))) {
           echo CANT_USE_MAIN_ACC;
@@ -28,13 +29,13 @@
       $_SESSION["user_name"] = $_GET['user_name'];
   }  
       
+  //If there is no user name , showing the prompt
   if (empty($_SESSION["user_name"])) {
       ShowUsernamePrompt();
       }
   else {
      $user_name = $_SESSION['user_name']; 
   }    
-  
   
   $BitPay = new BitPay($user_name);
   

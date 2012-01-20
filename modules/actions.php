@@ -1,6 +1,7 @@
 <?php
 
   //Отображение первоначальнйо страницы index.php
+  // Showing main page index.php
   function ShowTransactions()
   {
       global $BitPay,$smarty;
@@ -8,6 +9,7 @@
       $transactions = $BitPay->GetUserTransactions();
       
       //заполняем переменные шаблонизатора и выводим страницу
+      //Declaring variables and showing the page
       $smarty->assign('transactions',$transactions);
       $smarty->caching = false;
       $smarty->display('transactions.tpl');
@@ -16,6 +18,7 @@
   
   
   // Показывает остатки по всем счетам.
+  //Showing all balances for all accounts
   function ShowAllAccounts()
   {
       global $BitPay,$smarty,$db;
@@ -62,17 +65,19 @@
   {
       global $BitPay,$smarty;
       
-      //Получаем BTC адрес для нашего клиента , если адреса нет, тогда будет сгенерирован и сохранен в файле wallet.dat новый
+      //Получаем BTC адрес для нашего клиента , если адреса нет, тогда будет сгенерирован и сохранен в файле wallet.dat
+      //Getting BTC address for our user, if there is no addres for this user, it will be generated and saved in file wallet.dat
       $user_address_code = GetUserAddressCode();
       
       //Получаем значения балансов BTC и USD счетов
+      //Gettings USD and BTC BALANCES
       $balance_code_confirmed = GetBTCBalanceCode(1);
       $balance_code_unconfirmed = GetBTCBalanceCode(0);
       $usd_balance = $BitPay->GetUSDBalance();
       $mtgox_ticker = GetMtGoxTicker();
         
       //заполняем переменные шаблонизатора и выводим страницу
-      
+      //Declaring variables and showing the page
       $smarty->assign('mtgox_ticker',$mtgox_ticker);
       $smarty->assign('user_name',$BitPay->user_name);
       $smarty->assign('pay_address',$user_address_code);
@@ -94,6 +99,7 @@
   }
   
   //Отображение баланса по запросу, если баланс получить не удалось, выводиться сообщение об ошибке
+  //Balance showing by ajax request, if there is an error , message occurs
    function GetBTCBalanceCode($min_confirmations_count = MIN_CONFIRMATIONS_COUNT)
   {
       global $BitPay;
@@ -105,7 +111,8 @@
   }
   
    
-  //Отображение баланса по запросу, если баланс получить не удалось, выводиться сообщение об ошибке и код кнопки, нажатие на которую повторяет запрос адреса без перегрузки страницы
+  //Отображение адреса по запросу, если баланс получить не удалось, выводиться сообщение об ошибке и код кнопки, нажатие на которую повторяет запрос адреса без перегрузки страницы
+  //BTC address showing by ajax request, if there is an error , message occurs
   function GetUserAddressCode()
   {
      global $BitPay;
@@ -116,6 +123,8 @@
      return $user_address;
   }
   
+  //Выдает немного тестовых монет. Делает внутренний перевод из общего кошелька на кошелек клиента (только для теста!)
+  //Engolls some test coins. Maked internal move from the common wallet into user waller (use only for test!)
   function GetTestCoins()
   {
       global $BitPay;
@@ -136,13 +145,15 @@
       
   }
   
+  //Устанавливает язык
   function SetLanguage($lang)
   {
       SetCookie("lang",$lang,time()+60*60*24*30*12);
       header("Location: index.php");
   }
   
-  
+  //Получает данные о курсе BTC/USD используя api биржи MtGox . Запрос кэшируется и делается не чаще одного раза в минуту.
+  //Gets BTC/USD exchange rate data , using MgGox Api . 
   function GetMtGoxTicker()
   {
       global $smarty;
@@ -153,6 +164,8 @@
       $is_cached = $smarty->isCached('mtgox_ticker.tpl',$cache_tag);
       
       
+      //Если есть версия в кэше, тогда выводим ее
+      //If there is a cached version, no need to do it again
       if (!$is_cached) {
           $c = new curl('https://mtgox.com/api/0/data/ticker.php') ;
           $c->setopt(CURLOPT_TIMEOUT, 10) ;
