@@ -11,7 +11,7 @@
         <div class="page-header" style="height:22px;!important">
           <h3>{$smarty.const.SM_BAR_ABOUT}:</h3>
         </div>
-    
+    {$smarty.const.SM_DESCR_AVAIL_HERE} <a href="https://bitcointalk.org/index.php?topic=60144.0" target="_blank"> {$smarty.const.SM_HERE}</a>
   </div>
 {include file='footer.tpl'}
 </div>

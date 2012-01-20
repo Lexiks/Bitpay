@@ -11,7 +11,11 @@
         <div class="page-header" style="height:22px;!important">
           <h3>{$smarty.const.SM_BAR_CONTACT}:</h3>
         </div>
-    
+    <b>Bitcointalk.org forum profile:</b> <a href = "https://bitcointalk.org/index.php?action=profile;u=16354" target="_blank">Lexiko</a><br>
+    <b>GitHub:</b> <a href = "https://github.com/Lexiks" target="_blank">Lexiko</a><br>
+    <b>Email:</b> LexiksGit at yandex dot com<br>
+    <br>
+    <b>Donate account:</b> 1LH82L4zoXRjdh1gJcg5KTXRWnNAsNsKLc
   </div>
 {include file='footer.tpl'}
 </div>

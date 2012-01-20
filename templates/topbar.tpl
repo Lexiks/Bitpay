@@ -23,4 +23,9 @@
              {$smarty.const.SM_THIS_IS_DEMO}
           </div>
       </div>
+      <div style="margin-left:5px;margin-top:2px">
+        <a href="index.php?action=set_lang&lang=ru"><img src = "img/rus.png" height="15px" /></a>
+        <a href="index.php?action=set_lang&lang=en"><img src = "img/en.png" height="15px" /></a>
+      </div>
     </div>
+    

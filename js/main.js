@@ -3,10 +3,22 @@ $(document).ready(function() {
     refresh_transactions();
     setInterval(refresh_btc_balance,1000*60);
     setInterval(refresh_transactions,1000*60);
+    
+
+      $('#copy_to_clip').zclip({
+        path:'js/ZeroClipboard.swf',
+        copy:function(){
+            $(this).text('copied');
+            return $(this).attr('title');
+            
+        }
+    });
+
 });
+
 function HideStatusBox()
 {
-    setTimeout("$('#statusbox div').fadeOut()",1700);
+    setTimeout("$('#statusbox div').fadeOut()",5000);
 }
 
 function DoCheckout()

@@ -1,19 +1,34 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<script src="js/jquery.dev.js"></script>
-<script src="js/main.js"></script>
+<script type="text/javascript" src="js/jquery.dev.js"></script>
+<script type="text/javascript" src="js/jquery.zclip.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main.css" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body>
 {include file='topbar.tpl' page_name='main'}
+<br><br><br><br>
+
 <div class="container">
+
    <div class="content" style="margin:30 0 5;">
-     <br>
+         <div style="width:700px;height:30px">
+           <div style="color:gray;width:215px;float:left;">
+             {$smarty.const.SM_YOUR_BITPAY_ADDRES}:
+           </div> 
+           <div style="color:gray;width:215px;float:left;font-size:110%">
+              <b id='pay_address'>{$pay_address}</b>
+           </div>    
+           <div style="color:gray;width:215px;float:right;text-align:right">
+             <a href="#" id="copy_to_clip" title="{$pay_address}"><span style="font-size:90%">{$smarty.const.SM_COPY_TO_CLIPBOARD}</span></a>
+            </div>    
+        </div>
     <table cellpadding="0" cellspacing="0" border="0" id="account_table">
-        <tr><td class="info_col">{$smarty.const.SM_YOUR_BITPAY_ADDRES}:</td> <td width="200px" colspan="2"><b id='pay_address'>{$pay_address}</b></td></tr>
+
         <tr>
            <td class="info_col">
               {$smarty.const.SM_YOUR_CURRENT_BTC_BALANCE} :

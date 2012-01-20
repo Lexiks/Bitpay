@@ -2,7 +2,7 @@
   session_start();
   error_reporting(4);
   include_once ("include/config.php");  //настройки
-  include_once ("lang/ru.inc");
+  include_once ("include/lang.php");
   
   include_once ("include/smarty_init.php");//Инициализация smarty
   
@@ -34,7 +34,6 @@
   
   
   $BitPay = new BitPay($user_name);
-
   
   switch ($action) {
   
@@ -74,6 +73,8 @@
         
         case 'about' : $smarty->display('about.tpl'); break; 
         case 'contact' : $smarty->display('contact.tpl');  break;
+        
+        case 'set_lang' : SetLanguage($lang);break;
         
         default : ShowDefaultPage();break;
   }

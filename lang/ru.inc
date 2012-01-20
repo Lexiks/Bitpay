@@ -1,5 +1,5 @@
 <?php
-   define(LANG_CANT_GET_ADDRESS,'Не удалось получить адрес, попробуте сгенерировать еге еще раз');
+   define(LANG_CANT_GET_ADDRESS,'Не удалось получить адрес, попробуте сгенерировать его еще раз');
    define(LANG_GET_ADDRESS_AGAIN,'Получить адрес для платежа');
    define(LANG_BALANCE_SUCCESS_CHECKOUT,'Баланс успешно пополнен');
    define(LANG_BALANCE_ERROR_CHECKOUT,'Ошибка перевода баланса.');
@@ -29,12 +29,14 @@
  define(SM_REFRESH_TRANSACTIONS,'Обновить транзакции');
  define(SM_TRANSACTIONS_LIST,'Список транзакций:');
  define(SM_DO_CHECKOUT,'Перевести BTC в USD');
- define(SM_DO_CHECKOUT_TITLE,'Обнуляет BTC баланс и конвертирует его в USD баланс по текущему, указанному в настройках курсу');
+ define(SM_DO_CHECKOUT_TITLE,'Обнуляет BTC баланс и конвертирует его в USD баланс по текущему, указанному в настройках, курсу');
  define(SM_SM_GIVE_ME_TEST_COINS_TITLE,'Используется только для демонстрации, переводит немного BTC с основного консолидированного аккаунта на текущий');
  
  
  define(SM_CONFIRMED,'Подтверждено');
  define(SM_UNCONFIRMED,'Ожидает подтверждения');
+ 
+ define(SM_COPY_TO_CLIPBOARD,'Скопировать в буффер обмена');
  
  //user_name.tpl
  define(SM_ENTER_YOUR_NAME,'Введите ваше имя:');
@@ -64,6 +66,10 @@
  define(SM_CONNECTIONS,'Соединений');
  define(SM_BITCOIND_VERSION,'Версия bitcoind сервера');
  
+ //About.tpl
+ define(SM_DESCR_AVAIL_HERE,'Описание пока доступно');
+ define(SM_HERE,'тут');
+ 
  //bar
  define(SM_BAR_TITLE,'Пример приема BTC платежей');
  define(SM_BAR_HOME,'Главная');
@@ -71,10 +77,8 @@
  define(SM_BAR_ABOUT,'Описание');
  define(SM_BAR_CONTACT,'Контакты');
  
- define(SM_ABOUT_TITLE,'Контакты');
- define(SM_CONTACT_TITLE,'Контакты');
  
- define(SM_THIS_IS_SAMPLE,'* Данный сайт bitpay.tk <b>не является рабочим сервисом</b>! Он создан  <b>для демонстрации </b> организации  <b>приема платежей используя Bitcoin </b>. Все исходники можно скачать <a href="https://github.com/Lexiks/Bitpay" target="_blank">тут</a> и совршенно свободно использовать их на своем сайте.<br>Однако весь  <b>функционал является полностью рабочим </b> и вы можете тут  <b>испытать работоспособность </b> сериптов (создавать новые аккаунты или входить в имеющиеся, зачислять на них BTC виртуальным тестовым или реальным переводом, производить зачисление BTC->USD. Приятного тестирования!');
+ define(SM_THIS_IS_SAMPLE,'* Данный сайт bitpay.tk <b>не является рабочим сервисом</b>! Он создан  <b>для демонстрации </b> организации  <b>приема платежей используя Bitcoin </b>. Все исходники можно скачать <a href="https://github.com/Lexiks/Bitpay" target="_blank">тут</a> и совершенно свободно использовать их на своем сайте.<br>Однако весь  <b>функционал является полностью рабочим </b> и вы можете тут  <b>испытать работоспособность </b> скриптов (создавать новые аккаунты или входить в имеющиеся, зачислять на них BTC виртуальным тестовым или реальным переводом, производить зачисление BTC->USD. Приятного тестирования!');
  define(SM_THX_DONATE,'Спасибо за ваше пожертвование!');
  define(SM_THIS_IS_DEMO,'Это демонстрация!');
  

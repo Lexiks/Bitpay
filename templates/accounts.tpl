@@ -35,7 +35,7 @@
     {/foreach}
     </table>
     <br>
-    {$smarty.const.SM_ACCOUNT}: <b>{$balance}</b><br>
+    {$smarty.const.SM_ALL_BTC_BALANCE}: <b>{$balance}</b><br>
     <hr>
     <b>{$smarty.const.SM_INFORMATION}:</b><br><br>
     {$smarty.const.SM_BLOCK_COUNT}: <b>{$info.blocks}</b><br>
