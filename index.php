@@ -76,7 +76,14 @@
         case 'get_transactions' : ShowTransactions();
         case 'get_accounts' : ShowAllAccounts();
         
-        case 'about' : $smarty->display('about.tpl'); break; 
+        case 'about' : {
+            switch ($lang){
+             case 'en' : $smarty->display('about_en.tpl'); break;
+             case 'ru' : $smarty->display('about.tpl'); break;
+             default : $smarty->display('about.tpl'); break;
+            }
+        }
+             break; 
         case 'contact' : $smarty->display('contact.tpl');  break;
         
         case 'set_lang' : SetLanguage($lang);break;
