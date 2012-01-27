@@ -125,7 +125,7 @@
   
   //Выдает немного тестовых монет. Делает внутренний перевод из общего кошелька на кошелек клиента (только для теста!)
   //Engolls some test coins. Maked internal move from the common wallet into user waller (use only for test!)
-  function GetTestCoins()
+  function GetTestCoins($method)
   {
       global $BitPay;
       $balance = $BitPay->GetUserBTCBalance(MAIN_ACC);
@@ -136,7 +136,19 @@
          $sum = 0;   
       }
       if ($sum > 0) {
-          $BitPay->move(MAIN_ACC,$BitPay->user_name,$sum,1,'Test account refill');
+          if ($method === 'external') {
+            $address = $BitPay->getaddressesbyaccount($BitPay->user_name);
+            if (isset($address)){
+                $address = $BitPay->validate_address($address[0]);
+            }
+            if (isset($address))
+            {
+              $BitPay->sendfrom(MAIN_ACC,$address,$sum,1,'Test external account refill','Comment to');
+            }
+          }
+          else {
+          $BitPay->move(MAIN_ACC,$BitPay->user_name,$sum,1,'Test internal account refill');
+          }
           return '<div class="alert-message block-message success">'.LANG_TEST_COINS_OK.'<a class="close" onclick="$(this).parent().fadeOut()">×</a></div>';
       }
       else {

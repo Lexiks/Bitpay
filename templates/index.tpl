@@ -17,12 +17,14 @@
 </head>
 <body>
 {include file='topbar.tpl' page_name='main'}
+{include file='socket.tpl'}
+socket.tpl
 <br><br><br><br>
 
 <div class="container">
 
    <div class="content" style="margin:30 0 5;">
-         <div style="width:700px;height:30px">
+         <div style="width:700px;height:30px; float:left;">
            <div style="color:gray;width:215px;float:left;">
              {$smarty.const.SM_YOUR_BITPAY_ADDRES}:
            </div> 
@@ -32,6 +34,10 @@
            <div style="color:gray;width:215px;float:right;text-align:right">
              <a href="#" id="copy_to_clip" title="{$pay_address}"><span style="font-size:90%">{$smarty.const.SM_COPY_TO_CLIPBOARD}</span></a>
             </div>    
+        </div>
+        <div style="width:200px;height:30px; float:right;font-size:87%; display:none;" id="last_block">
+          <div style="width:90px;float:left;">{$smarty.const.SM_LAST_BLOCK_FOUND}:</div><div style="width:110px;float:right;font-weight:bold" id="last_block_time">&nbsp;</div><br>
+          <div style="width:90px;float:left;">№</div><div style="width:110px;float:right;font-weight:bold" id="last_block_num">&nbsp;</div><br>
         </div>
     <table cellpadding="0" cellspacing="0" border="0" id="account_table">
 
@@ -79,7 +85,8 @@
     </table>
     <div id="statusbox" style="height:20px">&nbsp;</div>
     <br>
-    <a href="js_error.html"  onclick="GetTestCoins();return false" class="btn info" title="{$smarty.const.SM_SM_GIVE_ME_TEST_COINS_TITLE}">{$smarty.const.SM_GIVE_ME_TEST_COINS}</a><span style="color:gray;"> {$smarty.const.SM_GIVE_ME_TEST_COINS2}</span><br>
+    <a href="js_error.html"  onclick="GetTestCoins('internal');return false" class="btn info" title="{$smarty.const.SM_SM_GIVE_ME_TEST_COINS_TITLE}">{$smarty.const.SM_GIVE_ME_TEST_COINS}</a><span style="color:gray;font-size:90%"> {$smarty.const.SM_GIVE_ME_TEST_COINS2}</span><br><br>
+    <a href="js_error.html"  onclick="GetTestCoins('external');return false" class="btn primary" title="{$smarty.const.SM_SM_GIVE_ME_TEST_COINS_TITLE}">{$smarty.const.SM_GIVE_ME_EXT_TEST_COINS}</a><span style="color:gray;font-size:90%"> {$smarty.const.SM_GIVE_ME_EXT_TEST_COINS2}</span><br>
     <br>
       <div>
        <div style="float:left;">{$smarty.const.SM_TRANSACTIONS_LIST}</div> 

@@ -17,7 +17,7 @@
   include_once ("include/connect.php");
   
   $action = $_GET["action"];
-  $user_name = preg_replace ("/[^a-zA-Z0-9]/","",$_SESSION["user_name"]);
+  $user_name = preg_replace ("/[^a-zA-Z0-9а-яА-я]/","",$_SESSION["user_name"]);
    
   //You can't use main consolidated account as a regulat account
   if (isset($_GET['user_name'])) {
@@ -58,7 +58,8 @@
                               echo $checkout_result;
                              } break;
                              
-        case 'get_test_coins' : { $test_result = GetTestCoins();
+        case 'get_test_coins' : { 
+                                 $test_result = GetTestCoins($_GET['method']);
                                  echo $test_result;    
                                  exit;
                              } break;

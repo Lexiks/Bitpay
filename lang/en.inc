@@ -22,9 +22,13 @@
  define(SM_REFRESH_BTC_BALANCE,'Refresh BTC balance');
  define(SM_REFRESH_BTC_BALANCE_SIGN,'Autorefresh once a minute.');
  
- define(SM_REFRESH_USD_BALANCE,'Refresh USD balance');
- define(SM_GIVE_ME_TEST_COINS,'Enroll some test coins');
+ define(SM_REFRESH_USD_BALANCE,'Refresh USD balance' );
+ define(SM_GIVE_ME_TEST_COINS,'Enroll some test coins (internal enroll)');
  define(SM_GIVE_ME_TEST_COINS2,'(Moved by internal transfer from an account in this wallet)');
+ 
+ define(SM_GIVE_ME_EXT_TEST_COINS,'Enroll some test coins (External enroll)');
+ define(SM_GIVE_ME_EXT_TEST_COINS2,'(Transferred by standart bitcoin transfer using Bitcoin (needs network confirmation)');
+ 
  define(SM_SHOW_ALL_ACCOUNTS,'Show all account balances on the wallet');
  define(SM_REFRESH_TRANSACTIONS,'Refresh transactions');
  define(SM_TRANSACTIONS_LIST,'Transactions list:');
@@ -32,7 +36,7 @@
  define(SM_DO_CHECKOUT_TITLE,'Resets BTC balance and converts it into USD balance the current, specified in the settings, exchange rate');
  define(SM_SM_GIVE_ME_TEST_COINS_TITLE,'Used for demonstration purposes only, it sends some BTC from main consolidated account into the current');
  define(SM_CURRENT_EX_RATE,'Current exchange rate');
- 
+ define(SM_LAST_BLOCK_FOUND,'Last block');
  
  define(SM_CONFIRMED,'Confirmed');
  define(SM_UNCONFIRMED,'Waiting confirmation');

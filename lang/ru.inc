@@ -23,8 +23,12 @@
  define(SM_REFRESH_BTC_BALANCE_SIGN,'Автобновление 1 раз в мин.');
  
  define(SM_REFRESH_USD_BALANCE,'Обновить USD баланс');
- define(SM_GIVE_ME_TEST_COINS,'Зачислить немного тестовых монет');
- define(SM_GIVE_ME_TEST_COINS2,'(Переводятся внутренним переводом из аккаунта, который находится на этом же кошельке)');
+ define(SM_GIVE_ME_TEST_COINS,'Зачислить немного тестовых монет (внутренний перевод)');
+ define(SM_GIVE_ME_TEST_COINS2,'(Переводятся внутренним переводом из аккаунта, который находится на этом же кошельке, без участия сети, подтверждение не требуется, зачисляется сразу)');
+ 
+ define(SM_GIVE_ME_EXT_TEST_COINS,'Зачислить немного тестовых монет (внешнее зачисление)');
+ define(SM_GIVE_ME_EXT_TEST_COINS2,'(Переводятся стандартным переводом через сеть Bitcoin, требуется стандартное подтврждение сети)');
+ 
  define(SM_SHOW_ALL_ACCOUNTS,'Просмотреть остатки по всем аккаунтам на кошельке');
  define(SM_REFRESH_TRANSACTIONS,'Обновить транзакции');
  define(SM_TRANSACTIONS_LIST,'Список транзакций:');
@@ -32,7 +36,7 @@
  define(SM_DO_CHECKOUT_TITLE,'Обнуляет BTC баланс и конвертирует его в USD баланс по текущему, указанному в настройках, курсу');
  define(SM_SM_GIVE_ME_TEST_COINS_TITLE,'Используется только для демонстрации, переводит немного BTC с основного консолидированного аккаунта на текущий');
  define(SM_CURRENT_EX_RATE,'Текущий обменный курс');
- 
+ define(SM_LAST_BLOCK_FOUND,'Последний блок');
  
  
  define(SM_CONFIRMED,'Подтверждено');

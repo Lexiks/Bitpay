@@ -15,7 +15,7 @@
         </div>
           
           <form method="get" action="index.php">
-            <input  name="user_name" size="40" value="tester" class="input-small" type="text" placeholder="{$smarty.const.SM_ACCOUNT}" >
+            <input  name="user_name" size="40" value="tester5" class="input-small" type="text" placeholder="{$smarty.const.SM_ACCOUNT}" >
             <button type="submit" class="btn success">Enter</button>
           </form>
 
